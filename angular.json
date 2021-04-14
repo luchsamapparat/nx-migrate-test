@@ -116,6 +116,34 @@
           }
         }
       }
+    },
+    "foo": {
+      "projectType": "library",
+      "root": "libs/foo",
+      "sourceRoot": "libs/foo/src",
+      "prefix": "nx-migrate-test",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/foo/tsconfig.lib.json",
+              "libs/foo/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/foo/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/foo/jest.config.js",
+            "tsConfig": "libs/foo/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/foo/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {}
     }
   },
   "cli": {
